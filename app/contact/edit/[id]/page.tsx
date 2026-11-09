@@ -1,14 +1,16 @@
+
+import React, { Suspense } from "react";
 import { ContactForm } from "@/app/_components/ContactForm";
 import { UpdateContactAction } from "@/app/actions/contact";
 import { getContactById } from "@/app/api/contact";
 import { getSession } from "@/app/_lib/session";
 import { redirect, notFound } from "next/navigation";
 
-const EditContact = async ({
+async function EditContactContent({
     params,
 }: {
     params: Promise<{ id: string }>;
-}) => {
+}) {
     const user = await getSession();
 
     if (!user) {
@@ -36,6 +38,16 @@ const EditContact = async ({
             />
         </div>
     );
-};
+}
 
-export default EditContact;
+export default function EditContact({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
+    return (
+        <Suspense fallback={<p>Loading contact...</p>}>
+            <EditContactContent params={params} />
+        </Suspense>
+    );
+}
