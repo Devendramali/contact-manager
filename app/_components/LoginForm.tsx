@@ -34,7 +34,7 @@ export const LoginForm = () => {
                     {error}
                 </p>
             )}
-        <button type='submit' className='mt-3 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-600 '>Login</button>
+        <button type='submit' className='mt-3 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 cursor-pointer hover:bg-blue-600 '>Login</button>
 
     </form>
   )
