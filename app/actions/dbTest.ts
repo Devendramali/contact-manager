@@ -1,4 +1,3 @@
-
 import "server-only";
 import mongoose from "mongoose";
 
@@ -17,7 +16,6 @@ const cached = global.mongooseCache ?? {
 global.mongooseCache = cached;
 
 export const connectDB = async () => {
-
     const MONGODB_URI = process.env.MONGODB_URI;
 
     if (!MONGODB_URI) {
@@ -37,14 +35,10 @@ export const connectDB = async () => {
 
     try {
         cached.conn = await cached.promise;
-
         console.log("MongoDB Connected Successfully!");
-
     } catch (error) {
         cached.promise = null;
-
         console.error("MongoDB Connection Error:", error);
-
         throw error;
     }
 

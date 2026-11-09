@@ -1,10 +1,11 @@
-import React from "react";
+
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { getSession } from "../_lib/session";
 import { getContact } from "../api/contact";
 import { ContactList } from "../_components/contactList";
 
-const ContactPage = async () => {
+async function ContactContent() {
     const user = await getSession();
 
     if (!user) {
@@ -43,6 +44,12 @@ const ContactPage = async () => {
             )}
         </div>
     );
-};
+}
 
-export default ContactPage;
+export default function ContactPage() {
+    return (
+        <Suspense fallback={<p>Loading contacts...</p>}>
+            <ContactContent />
+        </Suspense>
+    );
+}
